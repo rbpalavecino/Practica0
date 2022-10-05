@@ -10,10 +10,14 @@ namespace Practica0
     {
         static void Main(string[] args)
         {
-            string infoIngresada = "";
+            string infoIngresada = "";      //!! Se puede evitar la inicializacion
 
             Console.WriteLine("Ingrese la información:");
             infoIngresada = Console.ReadLine();
+
+            //!! Faltaria validar los datos de entrada
+            //!! Una linea mas larga o con caracteres incorrectos es procesada como si fuera correcta. Ej: HOLA1121231110123456AC1C1
+            //!! Una linea con un caracter de menos hace explotar el programa y el mismo no da explicaciones de por que falló
 
             try
             {
@@ -33,10 +37,13 @@ namespace Practica0
                 Console.WriteLine("Código: “{0}” ", codigoSensor);
                 Console.WriteLine("Activo: {0} ", estadoActivoSensor);
 
+                //!! Normalmente los programas de consola (aplicativos de Win y linux), terminan sin solicitar presionar una tecla
+                // pero en caso de decidir hacerlo, estaria bueno, poner un cartel avisando "Presione una tecla para salir..."
                 Console.ReadKey();
             }
-            catch
+            catch //(Exception ex)
             {
+                //!! Me avisa que hubo un error, pero no me dice que pasó, ni donde.
                 Console.WriteLine("Se produjo un error.");
                 Console.ReadKey();
             }
