@@ -15,10 +15,22 @@ namespace Practica0
             Console.WriteLine("Ingrese información del sensor");
             infoEntrada = Console.ReadLine();
 
+            //!! Falta validar los datos de entrada
+            //!! Una linea mas larga, o con caracteres incorrectos es procesada como si fuera correcta.
+            //!! Una linea con un caracter de menos hace explotar el programa y el mismo no da explicaciones de por que falló
+
+            
+            //!!Se puede evitar el uso de las variables "crudas", reutilizando el mismo string para la lectura cruda
+            //y luego la formateada. Ejemplo: 
+            string fechaRegistro = infoEntrada.Substring(0, 8);
+            fechaRegistro = fechaRegistro.Substring(0, 4) + "/" + fechaRegistro.Substring(4, 2) + "/" + fechaRegistro.Substring(6, 2);
+            //Al haber menos variables, se usa menos memoria y menos procesamiento.
+
+
             //PARSEO DE DATOS
             //Fecha / año mes dia 
-            string fechaRegistroCruda = infoEntrada.Substring(0, 8);
-            string fechaRegistroFormateada = fechaRegistroCruda.Substring(0, 4) + "/" + fechaRegistroCruda.Substring(4, 2) + "/" + fechaRegistroCruda.Substring(6, 2);
+            //string fechaRegistroCruda = infoEntrada.Substring(0, 8);
+            //string fechaRegistroFormateada = fechaRegistroCruda.Substring(0, 4) + "/" + fechaRegistroCruda.Substring(4, 2) + "/" + fechaRegistroCruda.Substring(6, 2);
             
             //Horario / Hora minuto segundo
             string horarioRegistroCruda = infoEntrada.Substring(8, 6);
@@ -48,14 +60,18 @@ namespace Practica0
 
             //Impresion de datos
             // Elegí la respuesta "Tipo 1" xq me pareció mas practico tener por separado la fecha y la hora en caso que despues necesite los datos
-            Console.WriteLine("Fecha del registro: {0}", fechaRegistroFormateada);
+            Console.WriteLine("Fecha del registro: {0}", fechaRegistro);
             Console.WriteLine("Hora del registro: {0}", horarioRegistroFormateada);
             Console.WriteLine("Temperatura: {0}", temperaturaFormateada);
             Console.WriteLine("Humedad: {0}", humedadFormateada);
             Console.WriteLine("Codigo: \"{0}\" ", codigoSensor);
             Console.WriteLine("Activo: {0} ", estadoSensorFormateado);
+            
+            //!! Normlamente en los programas de consola, no se utiliza, ya que se llaman desde la consola y la misma permanece abierta.
+            //En caso de decidir usarlo, recomiendo usar RedKey() e imprimir el msje "Presione una tecla para finalizar..."  o similar
+
             //si no pongo este readline se cierra el programa y no llego a ver lo que imprimi
-           string a=Console.ReadLine(); 
+            string a = Console.ReadLine(); 
             
         }
     }
