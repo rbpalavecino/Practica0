@@ -10,10 +10,10 @@ namespace Practica0
     {
         static void Main(string[] args)
         {
-            string msjEntrada = "";
+            //string msjEntrada = "";
 
             Console.WriteLine("Ingrese Linea de Entrada");
-            msjEntrada = Console.ReadLine();
+            String msjEntrada = Console.ReadLine();
             try
             {
                 //!! Falta validar los datos de entrada
@@ -31,9 +31,18 @@ namespace Practica0
                 string temperaturaTxt = string.Concat(msjEntrada.Substring(14, 2), ",", msjEntrada.Substring(16, 1), "°");
                 string humedadTxt = string.Concat(msjEntrada.Substring(17, 2), ",", msjEntrada.Substring(19, 1), "%");
                 
+                DateTime _out;
+                if (DateTime.TryParseExact(s, "yyyyMMddHHmmss", System.Globalization.CultureInfo, _out))                
+                    throw new Exception("error x");
+
+
                 //!! Se puede simplificar el escapeo "@"
                 string codigoTxt = string.Concat("\"", msjEntrada.Substring(20, 4), "\"");
                 char activoChar = char.Parse(msjEntrada.Substring(24, 1));
+                //String activo = msjEntrada.Substring(24, 1) == "1" ? "Si" : "No";
+
+
+
 
                 string activo = "No";
 
