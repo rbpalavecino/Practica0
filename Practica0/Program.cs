@@ -13,16 +13,22 @@ namespace Practica0
             string infoIngresada = "";      //!! Se puede evitar la inicializacion
 
             Console.WriteLine("Ingrese la información:");
-            infoIngresada = Console.ReadLine();
+            //string palabra = infoIngresada + "hola";
+            
+            //string infoIngresada = Console.ReadLine();
 
             //!! Faltaria validar los datos de entrada
             //!! Una linea mas larga o con caracteres incorrectos es procesada como si fuera correcta. Ej: HOLA1121231110123456AC1C1
             //!! Una linea con un caracter de menos hace explotar el programa y el mismo no da explicaciones de por que falló
-
+            
             try
             {
+                //DateTime.TryParseExact
                 string fecha = infoIngresada.Substring(0, 4) + '/' + infoIngresada.Substring(4, 2) + '/' + infoIngresada.Substring(6, 2);
                 string hora = infoIngresada.Substring(8, 2) + "Hs " + infoIngresada.Substring(10, 2) + "Min " + infoIngresada.Substring(12, 2) + "Seg";
+                
+                //int.TryParse()
+                //Double.TryParse()
                 string temperatura = infoIngresada.Substring(14, 2) + ',' + infoIngresada.Substring(16, 1);
                 string humedad = infoIngresada.Substring(17, 2) + ',' + infoIngresada.Substring(19, 1);
 
@@ -47,6 +53,7 @@ namespace Practica0
                 Console.WriteLine("Se produjo un error.");
                 Console.ReadKey();
             }
+
 
         }
 
