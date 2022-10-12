@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,19 +20,31 @@ namespace Practica0
             //!! Una linea mas larga, o con caracteres incorrectos es procesada como si fuera correcta.
             //!! Una linea con un caracter de menos hace explotar el programa y el mismo no da explicaciones de por que falló
 
-            
-            //!!Se puede evitar el uso de las variables "crudas", reutilizando el mismo string para la lectura cruda
+
+            //!!Se puede evitar el uso de la mayoria de las variables "crudas", reutilizando el mismo string para la lectura cruda
             //y luego la formateada. Ejemplo: 
-            string fechaRegistro = infoEntrada.Substring(0, 8);
+
+            string fechaRegistro = infoEntrada.Substring(0, 14);
+            DateTime fecha;
+            if (!DateTime.TryParseExact(fechaRegistro, "yyyyMMddhhmmss", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaRegistro))
+                throw new Exception($"La cadena {fechaRegistro}, no se interpreta como una Fecha Hora valida");
+
+            //string fechaRegistro = infoEntrada.Substring(0, 8);
             fechaRegistro = fechaRegistro.Substring(0, 4) + "/" + fechaRegistro.Substring(4, 2) + "/" + fechaRegistro.Substring(6, 2);
+
+            //string palabra = $"Hola {fechaRegistro} como estas";
+            //string fecha = $"{anio}/{getMonth()}/{dia}";
+
             //Al haber menos variables, se usa menos memoria y menos procesamiento.
-
-
+            /*
+            string palabra = "Hola"; ª ª ª ª ª ª
+            palabra = palabra + " que tal";
+            */
             //PARSEO DE DATOS
             //Fecha / año mes dia 
             //string fechaRegistroCruda = infoEntrada.Substring(0, 8);
             //string fechaRegistroFormateada = fechaRegistroCruda.Substring(0, 4) + "/" + fechaRegistroCruda.Substring(4, 2) + "/" + fechaRegistroCruda.Substring(6, 2);
-            
+
             //Horario / Hora minuto segundo
             string horarioRegistroCruda = infoEntrada.Substring(8, 6);
             string horarioRegistroFormateada = horarioRegistroCruda.Substring(0, 2) + "Hs " + horarioRegistroCruda.Substring(2, 2) + "Min " + horarioRegistroCruda.Substring(4, 2) + "Seg";
